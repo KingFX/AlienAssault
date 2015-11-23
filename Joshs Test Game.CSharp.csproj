@@ -68,12 +68,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BackgroundScript.cs" />
-    <Compile Include="Assets\EnemyGeneratorScript.cs" />
-    <Compile Include="Assets\ScreenSize.cs" />
+    <Compile Include="Assets\Scripts\BackgroundScript.cs" />
     <Compile Include="Assets\Scripts\DefaultBlasterScript.cs" />
+    <Compile Include="Assets\Scripts\EnemyGeneratorScript.cs" />
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
+    <Compile Include="Assets\Scripts\ScreenSize.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
