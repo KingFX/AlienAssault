@@ -85,13 +85,11 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
-    private float distance;
-
     private void MouseControl() {
         float mousePosX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
         float mousePosY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
 
-        distance = Vector3.Distance(transform.position, new Vector3(mousePosX, mousePosY, transform.position.z));
+        float distance = Vector3.Distance(transform.position, new Vector3(mousePosX, mousePosY, transform.position.z));
         //rotationSpeed = rotationSpeed * (distance / 0.8f) * Time.deltaTime;
         if (distance > maxMovementSpeed) {
             distance = maxMovementSpeed;
