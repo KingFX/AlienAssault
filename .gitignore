@@ -42,8 +42,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.log
-*.log
-Temp/UnityLockfile
-Temp/UnityTempFile-06873bb07d5ebce4684fe4d75e9c6a53
-Temp/UnityTempFile-3ee9e5295d49ddd4eb502e8fabddff91
-Temp/UnityTempFile-2ff80149b46cf764bb526a88c3bf032d
+Temp/*
