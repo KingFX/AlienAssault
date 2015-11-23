@@ -33,9 +33,12 @@ public class PlayerControl : MonoBehaviour {
     private bool attackEnabled = true;
     private float delay;
 
+    private const float smoothMotion = 0.8f;
+    private const float maxMovementSpeed = 0.75f;
+
     // Use this for initialization
     void Start() {
-        Cursor.visible = false;
+        //Cursor.visible = false;
 
         delay = fireRateDelay;
         thrusters[0].SetActive(false);
@@ -54,9 +57,6 @@ public class PlayerControl : MonoBehaviour {
 
         minRotation = 90 - tiltAngle;
         maxRotation = 90 + tiltAngle;
-
-        lastMousePosX = transform.position.x;
-        lastMousePosY = transform.position.y;
     }
 
     // Update is called once per frame
@@ -65,28 +65,16 @@ public class PlayerControl : MonoBehaviour {
         Attack();
     }
 
-    private float lastMousePosX;
-    private float lastMousePosY;
-
     private void Movement() {
-        //transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, transform.position.z);
         float mousePosX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
         float mousePosY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
 
-
-        //Vector3 newPos = transform.position;
         float distance = Vector3.Distance(transform.position, new Vector3(mousePosX, mousePosY, transform.position.z));
-        if (distance > 5) {
-            distance = 5;
-            
+        if (distance > maxMovementSpeed) {
+            distance = maxMovementSpeed;
         }
-        //Mathf.Clamp(distance, 0, 5);
 
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(mousePosX, mousePosY, transform.position.z), movementSpeed * (distance / 2F) * Time.deltaTime);
-
-        //lastMousePosX = mousePosX;
-        //lastMousePosY = mousePosY;
-
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(mousePosX, mousePosY, transform.position.z), movementSpeed * (distance / smoothMotion) * Time.deltaTime);
 
         //if (mousePosX > newPos.x) {
         //    newPos = Vector3.MoveTowards(newPos, Vector3.right, movementSpeed);
