@@ -34,7 +34,7 @@ public class PlayerControl : MonoBehaviour {
     private float delay;
 
     private const float smoothMotion = 0.8f;
-    private const float maxMovementSpeed = 0.75f;
+    private const float maxMovementSpeed = 7.5f;
 
     // Use this for initialization
     void Start() {
