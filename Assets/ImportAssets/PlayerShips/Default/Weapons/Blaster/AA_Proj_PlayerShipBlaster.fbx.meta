@@ -1,0 +1,177 @@
+fileFormatVersion: 2
+guid: 8a972262a9517e44c82cd8aa99376d0b
+timeCreated: 1447891873
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Area
+    100004: Camera
+    100006: Cube.001
+    100008: Cube.016
+    100010: Cube.017
+    100012: Cube.031
+    100014: Cube.032
+    100016: Cube.046
+    100018: Cube.047
+    100020: Cube.048
+    100022: Cube.049
+    100024: Cube.063
+    100026: Cube.064
+    100028: Cube.078
+    100030: Cube.079
+    100032: Cube.080
+    100034: Cube.096
+    100036: Cube.110
+    100038: Cube.111
+    100040: Cube.112
+    100042: Cube.113
+    100044: Cube.127
+    400000: //RootNode
+    400002: Area
+    400004: Camera
+    400006: Cube.001
+    400008: Cube.016
+    400010: Cube.017
+    400012: Cube.031
+    400014: Cube.032
+    400016: Cube.046
+    400018: Cube.047
+    400020: Cube.048
+    400022: Cube.049
+    400024: Cube.063
+    400026: Cube.064
+    400028: Cube.078
+    400030: Cube.079
+    400032: Cube.080
+    400034: Cube.096
+    400036: Cube.110
+    400038: Cube.111
+    400040: Cube.112
+    400042: Cube.113
+    400044: Cube.127
+    2300000: Cube.001
+    2300002: Cube.016
+    2300004: Cube.017
+    2300006: Cube.031
+    2300008: Cube.032
+    2300010: Cube.046
+    2300012: Cube.047
+    2300014: Cube.048
+    2300016: Cube.049
+    2300018: Cube.063
+    2300020: Cube.064
+    2300022: Cube.078
+    2300024: Cube.079
+    2300026: Cube.080
+    2300028: Cube.096
+    2300030: Cube.110
+    2300032: Cube.111
+    2300034: Cube.112
+    2300036: Cube.113
+    2300038: Cube.127
+    3300000: Cube.001
+    3300002: Cube.016
+    3300004: Cube.017
+    3300006: Cube.031
+    3300008: Cube.032
+    3300010: Cube.046
+    3300012: Cube.047
+    3300014: Cube.048
+    3300016: Cube.049
+    3300018: Cube.063
+    3300020: Cube.064
+    3300022: Cube.078
+    3300024: Cube.079
+    3300026: Cube.080
+    3300028: Cube.096
+    3300030: Cube.110
+    3300032: Cube.111
+    3300034: Cube.112
+    3300036: Cube.113
+    3300038: Cube.127
+    4300000: Cube.127
+    4300002: Cube.113
+    4300004: Cube.112
+    4300006: Cube.111
+    4300008: Cube.110
+    4300010: Cube.096
+    4300012: Cube.080
+    4300014: Cube.079
+    4300016: Cube.078
+    4300018: Cube.064
+    4300020: Cube.063
+    4300022: Cube.049
+    4300024: Cube.048
+    4300026: Cube.047
+    4300028: Cube.046
+    4300030: Cube.032
+    4300032: Cube.031
+    4300034: Cube.017
+    4300036: Cube.016
+    4300038: Cube.001
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
