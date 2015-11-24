@@ -70,12 +70,14 @@
   <ItemGroup>
     <Compile Include="Assets\CameraControl.cs" />
     <Compile Include="Assets\GridGenerator.cs" />
+    <Compile Include="Assets\MouseControl.cs" />
     <Compile Include="Assets\Scripts\BackgroundScript.cs" />
     <Compile Include="Assets\Scripts\DefaultBlasterScript.cs" />
     <Compile Include="Assets\Scripts\EnemyGeneratorScript.cs" />
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\ScreenSize.cs" />
+    <Compile Include="Assets\SlotScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
