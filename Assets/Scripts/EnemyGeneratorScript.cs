@@ -18,10 +18,10 @@ public class EnemyGeneratorScript : MonoBehaviour {
     }
 
     void OnDrawGizmos() {
-        Gizmos.DrawSphere(new Vector3(transform.position.x + spawnArea.x, transform.position.y + -spawnArea.y, transform.position.z), circleSize);
-        Gizmos.DrawSphere(new Vector3(transform.position.x + spawnArea.x, transform.position.y + spawnArea.y, transform.position.z), circleSize);
-        Gizmos.DrawSphere(new Vector3(transform.position.x + -spawnArea.x, transform.position.y + spawnArea.y, transform.position.z), circleSize);
-        Gizmos.DrawSphere(new Vector3(transform.position.x + -spawnArea.x, transform.position.y + -spawnArea.y, transform.position.z), circleSize);
+        //Gizmos.DrawSphere(new Vector3(transform.position.x + spawnArea.x, transform.position.y + -spawnArea.y, transform.position.z), circleSize);
+        //Gizmos.DrawSphere(new Vector3(transform.position.x + spawnArea.x, transform.position.y + spawnArea.y, transform.position.z), circleSize);
+        //Gizmos.DrawSphere(new Vector3(transform.position.x + -spawnArea.x, transform.position.y + spawnArea.y, transform.position.z), circleSize);
+        //Gizmos.DrawSphere(new Vector3(transform.position.x + -spawnArea.x, transform.position.y + -spawnArea.y, transform.position.z), circleSize);
     }
 
     void Update() {

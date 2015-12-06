@@ -3,13 +3,15 @@ using System.Collections;
 
 public class DefaultBlasterScript : MonoBehaviour {
 
+    private int bulletDamage = 2;
+
     void OnBecameInvisible() {
         DestroyThis();
     }
 
     void OnTriggerEnter(Collider col) {
         if (col.tag.Equals("Enemy")) {
-            col.GetComponent<EnemyScript>().GiveDamage(2);
+            col.GetComponent<EnemyBehaviour>().GiveDamage(bulletDamage);
             DestroyThis();
         }
     }

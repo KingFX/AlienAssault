@@ -31,20 +31,21 @@ public class ItemSelector : MonoBehaviour {
             GameObject itemSlotBackground = Instantiate(slot, new Vector3(transform.position.x, yPos, transform.position.z), Quaternion.identity) as GameObject;
             itemSlotBackground.transform.SetParent(slotParent.transform);
             spawnedSlotsBackgrounds.Add(itemSlotBackground);
+            
 
             print("dbItems[i] " + dbItems[i].icon.name);
-            GameObject item = Instantiate(dbItems[i].icon, new Vector3(transform.position.x * 30, yPos * 30, transform.position.z), Quaternion.identity) as GameObject;
+            GameObject item = Instantiate(dbItems[i].icon, new Vector3(transform.position.x, yPos, transform.position.z), Quaternion.identity) as GameObject;
             print(item);
             item.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             item.transform.SetParent(itemParent);
             spawnedItems.Add(item);
             //item.GetComponent<CanvasIcon>().SetItemNumber(i + 1);
 
-            yPos += 0.055f;
+            yPos += slot.GetComponent<Renderer>().bounds.size.y;
         }
         for (int i = 0; i < dbItems.Count - 1; i++) {
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.0275f, transform.position.z);
-            itemParent.position = new Vector3(itemParent.transform.position.x, itemParent.transform.position.y - (0.0275f * 30), itemParent.transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y - slot.GetComponent<Renderer>().bounds.size.y / 2, transform.position.z);
+            itemParent.position = new Vector3(itemParent.transform.position.x, itemParent.transform.position.y - slot.GetComponent<Renderer>().bounds.size.y / 2, itemParent.transform.position.z);
         }
 	}
 
