@@ -35,23 +35,27 @@ public class GameEngine : MonoBehaviour {
 
     void Update() {
         if (delay <= 0) {
-            //print("RowsLength" + levelRows.Length);
             if (rowNum < levelRows.Length) {
                 string levelRow = levelRows[rowNum];
                 rowNum++;
                 string[] enemyIds = levelRow.Split(',');
                 for (int i = 0; i < enemyIds.Length; i++) {
-                    //EnemyMovement movement = null;
                     GameObject enemyObject = null;
-                    switch (enemyIds[i]) {
+                    string enemyId = enemyIds[i];
+                    string movementId = null;
+                    if (enemyIds[i].Contains(":")) {
+                        enemyId = enemyIds[i].Substring(0, enemyIds[i].IndexOf(':'));
+                        movementId = enemyIds[i].Substring(enemyIds[i].IndexOf(':') + 1, enemyIds[i].Length - 2);
+                    }
+                    switch (enemyId) {
                         case "0":
                             break;
                         case "1": {
                                 DbItem enemyItem = ItemDatabase.GetItemByFileId("0");
                                 //movement = new MoveDown();
                                 enemyObject = Instantiate(enemyItem.gameModel, new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemyItem.gameModel.transform.rotation) as GameObject;
-                                enemyObject.AddComponent<MoveDown>();
                                 enemyObject.GetComponent<EnemyBehaviour>().SetHealth(enemyItem.health);
+                                enemyObject.AddComponent<SkrullWeapon>();
                                 //enemyObject.GetComponent<EnemyBehaviour>().SetMovement(movement);
                                 break;
                             }
@@ -59,8 +63,8 @@ public class GameEngine : MonoBehaviour {
                                 DbItem enemyItem = ItemDatabase.GetItemByFileId("1");
                                 //movement = new MoveDown();
                                 enemyObject = Instantiate(enemyItem.gameModel, new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemyItem.gameModel.transform.rotation) as GameObject;
-                                enemyObject.AddComponent<MoveDown>();
                                 enemyObject.GetComponent<EnemyBehaviour>().SetHealth(enemyItem.health);
+                                enemyObject.AddComponent<SkrullWeapon>();
                                 //enemyObject.GetComponent<EnemyBehaviour>().SetMovement();
                                 break;
                             }
@@ -68,7 +72,6 @@ public class GameEngine : MonoBehaviour {
                                 DbItem enemyItem = ItemDatabase.GetItemByFileId("2");
                                 //movement = new MoveDown();
                                 enemyObject = Instantiate(enemyItem.gameModel, new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemyItem.gameModel.transform.rotation) as GameObject;
-                                enemyObject.AddComponent<MoveDown>();
                                 enemyObject.GetComponent<EnemyBehaviour>().SetHealth(enemyItem.health);
                                 //enemyObject.GetComponent<EnemyBehaviour>().SetMovement(movement);
                                 break;
@@ -76,6 +79,24 @@ public class GameEngine : MonoBehaviour {
                         default:
                             Debug.Log("Unknown Item ID: " + enemyIds[i]);
                             break;
+                    }
+                    if (movementId != null) {
+                        switch (movementId) {
+                            case "0":
+                                break;
+                            case "1":
+                                enemyObject.AddComponent<MoveDown>();
+                                break;
+                            case "2":
+                                enemyObject.AddComponent<MoveRightAngle>();
+                                break;
+                            case "3":
+                                enemyObject.AddComponent<MoveLeftAngle>();
+                                break;
+                            default:
+                                Debug.Log("Unkown Movement ID: " + movementId);
+                                break;
+                        }
                     }
                     if (enemyObject != null) {
                         //GameObject enemyModel = enemyItem.gameModel;
@@ -103,12 +124,22 @@ public class GameEngine : MonoBehaviour {
             } else if (spawnedObjects[i].GetComponent<EnemyBehaviour>().GetHealth() <= 0) {
                 markedObjects.Add(spawnedObjects[i]);
             }
-            //Debug.Log("Moving: " + i + " - " + spawnedEnemies[i]);
             spawnedObjects[i].GetComponent<EnemyBehaviour>().Move(2.5f);
+            if (spawnedObjects[i].transform.position.y < screenHeight / 2) {
+                spawnedObjects[i].GetComponent<EnemyBehaviour>().Attack();
+            }
         }
         foreach (GameObject g in markedObjects) {
             spawnedObjects.Remove(g);
             Destroy(g);
         }
+    }
+
+    public float GetScreenWidth() {
+        return screenWidth;
+    }
+
+    public float GetScreenHeight() {
+        return screenHeight;
     }
 }

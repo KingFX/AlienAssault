@@ -34,6 +34,14 @@ public static class ItemDatabase {
         redReaper.gameModel = (GameObject)Resources.Load("ImportAssets/Enemies/RedReaper/GameObject/RedReaper");
         redReaper.icon = (GameObject)Resources.Load("ImportAssets/Enemies/RedReaper/GameObject/RedReaper");
         items.Add(redReaper);
+
+        DbItem skrullWeapon = new DbItem();
+        skrullWeapon.id = 4;
+        skrullWeapon.name = "SkrullWeapon";
+        skrullWeapon.type = "weapon";
+        skrullWeapon.gameModel = (GameObject)Resources.Load("ImportAssets/Enemies/Skrull/Weapon/Blaster/Prefab/SkrullWeapon");
+        skrullWeapon.icon = (GameObject)Resources.Load("ImportAssets/Enemies/Skrull/Weapon/Blaster/Prefab/SkrullWeapon");
+        items.Add(skrullWeapon);
     }
 
     public static List<DbItem> GetItems() {
@@ -44,5 +52,15 @@ public static class ItemDatabase {
     public static DbItem GetItemByFileId(string id) {
         int intId = int.Parse(id);
         return items[intId];
+    }
+
+    public static DbItem GetItemByName(string name) {
+        DbItem item = null;
+        for (int i = 0; i < items.Count; i++) {
+            if (items[i].name.Equals(name)) {
+                item = items[i];
+            }
+        }
+        return item;
     }
 }
