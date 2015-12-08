@@ -103,6 +103,10 @@ public class PlayerControl : MonoBehaviour {
     private bool toggleW = false;
     private bool toggleH = false;
 
+    private bool leftBarrel = false;
+    private bool rightBarrel = false;
+    private int barrelRotationAngle = 0;
+    private int barrelRotationSpeed = 15;
 
     private void Movement() {
         if (keyboardControl) {
@@ -120,8 +124,8 @@ public class PlayerControl : MonoBehaviour {
         rotate += Input.GetAxis("Mouse Y") * smooth;
         rotate = Mathf.Clamp(rotate, minRotation, maxRotation);
 
-        float hSpacer = 0.025f;
-        float vSpacer = 0.025f;
+        float hSpacer = 0.0125f;
+        float vSpacer = 0;
 
         if (transform.position.y > shipPos.y + vSpacer) {
             toggleH = true;
@@ -136,31 +140,57 @@ public class PlayerControl : MonoBehaviour {
                 toggleH = false;
             }
         }
-        if (transform.position.x > shipPos.x + hSpacer) {
-            toggleW = true;
-            setLeftOff = false;
-            thrusters[0].SetActive(true);
-            if (transform.localEulerAngles.y > rotate) {
-                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y - rotationSpeed, transform.eulerAngles.z);
+        if (rightBarrel) {
+            leftBarrel = false;
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y - barrelRotationSpeed, transform.eulerAngles.z);
+            barrelRotationAngle += barrelRotationSpeed;
+            if (barrelRotationAngle >= 360) {
+                rightBarrel = false;
+                barrelRotationAngle = 0;
             }
-        } else if (transform.position.x < shipPos.x - hSpacer) {
-            toggleW = true;
-            setRightOff = false;
-            thrusters[3].SetActive(true);
-            if (transform.localEulerAngles.y < rotate + (maxRotation - minRotation)) {
-                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y + rotationSpeed, transform.eulerAngles.z);
+        } else if (leftBarrel) {
+            rightBarrel = false;
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y + barrelRotationSpeed, transform.eulerAngles.z);
+            barrelRotationAngle += barrelRotationSpeed;
+            if (barrelRotationAngle >= 360) {
+                leftBarrel = false;
+                barrelRotationAngle = 0;
             }
         } else {
-            if (toggleW) {
-                setLeftOff = true;
-                setRightOff = true;
-                toggleW = false;
-            }
-            if (transform.localEulerAngles.y < 90) {
-                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y + rotationSpeed, transform.eulerAngles.z);
-            }
-            if (transform.localEulerAngles.y > 90) {
-                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y + -rotationSpeed, transform.eulerAngles.z);
+            if (transform.position.x > shipPos.x + hSpacer) {
+                toggleW = true;
+                setLeftOff = false;
+                thrusters[0].SetActive(true);
+                if (Vector3.Distance(new Vector3(0, transform.position.x, 0), new Vector3(0, shipPos.x, 0)) > 0.75f) {
+                    rightBarrel = true;
+                } else {
+                    if (transform.localEulerAngles.y > rotate) {
+                        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y - rotationSpeed, transform.eulerAngles.z);
+                    }
+                }
+            } else if (transform.position.x < shipPos.x - hSpacer) {
+                toggleW = true;
+                setRightOff = false;
+                thrusters[3].SetActive(true);
+                if (Vector3.Distance(new Vector3(0 ,transform.position.x, 0), new Vector3(0, shipPos.x, 0)) > 0.75f) {
+                    leftBarrel = true;
+                } else {
+                    if (transform.localEulerAngles.y < rotate + (maxRotation - minRotation)) {
+                        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y + rotationSpeed, transform.eulerAngles.z);
+                    }
+                }
+            } else {
+                if (toggleW) {
+                    setLeftOff = true;
+                    setRightOff = true;
+                    toggleW = false;
+                }
+                if (transform.localEulerAngles.y < 90) {
+                    transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y + rotationSpeed, transform.eulerAngles.z);
+                }
+                if (transform.localEulerAngles.y > 90) {
+                    transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y + -rotationSpeed, transform.eulerAngles.z);
+                }
             }
         }
         if (setLeftOff) {
