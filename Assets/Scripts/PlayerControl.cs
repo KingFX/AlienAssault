@@ -105,8 +105,8 @@ public class PlayerControl : MonoBehaviour {
 
     private bool leftBarrel = false;
     private bool rightBarrel = false;
-    private int barrelRotationAngle = 0;
-    private int barrelRotationSpeed = 15;
+    private float barrelRotationAngle = 0;
+    private int barrelRotationSpeed = 800;
 
     private void Movement() {
         if (keyboardControl) {
@@ -142,16 +142,16 @@ public class PlayerControl : MonoBehaviour {
         }
         if (rightBarrel) {
             leftBarrel = false;
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y - barrelRotationSpeed, transform.eulerAngles.z);
-            barrelRotationAngle += barrelRotationSpeed;
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y - barrelRotationSpeed * Time.deltaTime, transform.eulerAngles.z);
+            barrelRotationAngle += barrelRotationSpeed * Time.deltaTime;
             if (barrelRotationAngle >= 360) {
                 rightBarrel = false;
                 barrelRotationAngle = 0;
             }
         } else if (leftBarrel) {
             rightBarrel = false;
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y + barrelRotationSpeed, transform.eulerAngles.z);
-            barrelRotationAngle += barrelRotationSpeed;
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.eulerAngles.y + barrelRotationSpeed * Time.deltaTime, transform.eulerAngles.z);
+            barrelRotationAngle += barrelRotationSpeed * Time.deltaTime;
             if (barrelRotationAngle >= 360) {
                 leftBarrel = false;
                 barrelRotationAngle = 0;

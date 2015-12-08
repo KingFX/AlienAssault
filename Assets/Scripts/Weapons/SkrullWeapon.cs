@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class SkrullWeapon : MonoBehaviour, EnemyWeapon {
+public class SkrullWeapon : MonoBehaviour, Weapon {
 
     private GameObject model;
     private int damage = 2;

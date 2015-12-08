@@ -29,8 +29,8 @@ public abstract class DefaultEnemyBehaviour : MonoBehaviour, EnemyBehaviour {
     }
 
     public void Attack() {
-        if (GetComponent<EnemyWeapon>() != null) {
-            GetComponent<EnemyWeapon>().Attack(-transform.up, new Vector3(this.transform.position.x, this.transform.position.y - this.transform.lossyScale.y / 2, this.transform.position.z));
+        if (GetComponent<Weapon>() != null) {
+            GetComponent<Weapon>().Attack(-transform.up, new Vector3(this.transform.position.x, this.transform.position.y - this.transform.lossyScale.y / 2, this.transform.position.z));
         }
     }
 

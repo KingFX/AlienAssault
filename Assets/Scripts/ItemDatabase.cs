@@ -42,6 +42,14 @@ public static class ItemDatabase {
         skrullWeapon.gameModel = (GameObject)Resources.Load("ImportAssets/Enemies/Skrull/Weapon/Blaster/Prefab/SkrullWeapon");
         skrullWeapon.icon = (GameObject)Resources.Load("ImportAssets/Enemies/Skrull/Weapon/Blaster/Prefab/SkrullWeapon");
         items.Add(skrullWeapon);
+
+        DbItem plazmaBullet = new DbItem();
+        plazmaBullet.id = 5;
+        plazmaBullet.name = "PlazmaBullet";
+        plazmaBullet.type = "weapon";
+        plazmaBullet.gameModel = (GameObject)Resources.Load("ImportAssets/Weapons/PlazmaBullet/Prefab/PlazmaBullet");
+        plazmaBullet.icon = (GameObject)Resources.Load("ImportAssets/Weapons/PlazmaBullet/Prefab/PlazmaBullet");
+        items.Add(plazmaBullet);
     }
 
     public static List<DbItem> GetItems() {

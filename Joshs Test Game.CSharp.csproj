@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PlazmaDuelWeapon.cs" />
     <Compile Include="Assets\Scripts\AnimateFrameScript.cs" />
     <Compile Include="Assets\Scripts\BackgroundScript.cs" />
     <Compile Include="Assets\Scripts\CameraControl.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Scripts\SlotScript.cs" />
     <Compile Include="Assets\Scripts\Weapons\EnemyWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\SkrullWeapon.cs" />
+    <Compile Include="Assets\plazmaBullet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\LevelTexts\Level1.txt" />
