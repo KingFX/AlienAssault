@@ -84,14 +84,18 @@ public class GameEngine : MonoBehaviour {
                                 //movement = new MoveDown();
                                 EnemyBehaviour enemy = new Blinky();
                                 enemy.SetModel(enemyItem.gameModel);
+                                enemy.SetHealth(3);
+                                enemy.SetModel((GameObject)GameObject.Instantiate(enemy.GetModel(), new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemy.GetModel().transform.rotation));
                                 enemyObject = enemy;
                                 //enemyObject = (GameObject)GameObject.Instantiate(enemy.GetModel(), new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemy.GetModel().transform.rotation);
                                 //enemyObject.GetComponent<EnemyBehaviour>().SetHealth(enemyItem.health);
-                                Weapon weapon = new SkrullWeapon();
-                                Bullet bullet = new PlazmaBullet();
-                                bullet.SetModel(ItemDatabase.GetItemByName("FireBall").gameModel);
-                                bullet.SetType(BulletType.ENEMY);
-                                weapon.SetWeaponBullet(bullet);
+
+                                //Weapon weapon = new SkrullWeapon();
+                                //Bullet bullet = new PlazmaBullet();
+                                //bullet.SetModel(ItemDatabase.GetItemByName("FireBall").gameModel);
+                                //bullet.SetType(BulletType.ENEMY);
+                                //weapon.SetWeaponBullet(bullet);
+                                
                                 //enemyObject.AddComponent<SkrullWeapon>();
                                 //enemyObject.GetComponent<SkrullWeapon>().SetWeaponBullet(ItemDatabase.GetItemByName("FireBall").gameModel);
                                 //enemyObject.GetComponent<EnemyBehaviour>().SetMovement(movement);
@@ -102,6 +106,8 @@ public class GameEngine : MonoBehaviour {
                                 //movement = new MoveDown();
                                 EnemyBehaviour enemy = new Skrull();
                                 enemy.SetModel(enemyItem.gameModel);
+                                enemy.SetHealth(5);
+                                enemy.SetModel((GameObject)GameObject.Instantiate(enemy.GetModel(), new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemy.GetModel().transform.rotation));
                                 enemyObject = enemy;
                                 //enemyObject = Instantiate(enemy.GetModel(), new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemy.GetModel().transform.rotation) as GameObject;
                                 //enemyObject.GetComponent<EnemyBehaviour>().SetHealth(enemyItem.health);
@@ -114,6 +120,8 @@ public class GameEngine : MonoBehaviour {
                                 //movement = new MoveDown();
                                 EnemyBehaviour enemy = new Skrull();
                                 enemy.SetModel(enemyItem.gameModel);
+                                enemy.SetHealth(5);
+                                enemy.SetModel((GameObject)GameObject.Instantiate(enemy.GetModel(), new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemy.GetModel().transform.rotation));
                                 enemyObject = enemy;
                                 //enemyObject = Instantiate(enemy.GetModel(), new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemy.GetModel().transform.rotation) as GameObject;
                                 //enemyObject.GetComponent<EnemyBehaviour>().SetHealth(enemyItem.health);
