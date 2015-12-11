@@ -1,38 +1,47 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class MoveLeftAngle : MonoBehaviour, EnemyMovement {
+public class MoveLeftAngle : EnemyMovement, ScreenAware {
 
 	private float spacer = 0.5f;
     private float rightDistance = 16;
     private float leftDistance = 16;
     private bool angleRight = false;
+    private GameObject enemy;
+    private float screenX;
+    private float screenY;
 
-
-    void Start() {
-        rightDistance = this.transform.position.x + rightDistance;
-        leftDistance = this.transform.position.x - leftDistance;    
+    public void SetEnemy(GameObject enemy) {
+        this.enemy = enemy;
     }
 
     public void Move(float speed) {
         speed = speed * 1.5f;
-        if (this.transform.position.y < FindObjectOfType<GameEngine>().GetScreenHeight() / 2) {
+        if (enemy.transform.position.y < screenY / 2) {
             if (angleRight) {
-                this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.transform.position.x + 1, this.transform.position.y - 1), speed * Time.deltaTime);
-                if (this.transform.position.x > FindObjectOfType<GameEngine>().GetScreenWidth() / 2 - spacer ||
-                this.transform.position.x > rightDistance) {
+                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, new Vector3(enemy.transform.position.x + 1, enemy.transform.position.y - 1), speed * Time.deltaTime);
+                if (enemy.transform.position.x > screenX / 2 - spacer ||
+                enemy.transform.position.x > rightDistance) {
                     angleRight = false;
                 }
             } else {
-                this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.transform.position.x - 1, this.transform.position.y - 1), speed * Time.deltaTime);
+                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, new Vector3(enemy.transform.position.x - 1, enemy.transform.position.y - 1), speed * Time.deltaTime);
 
-                if (this.transform.position.x < -FindObjectOfType<GameEngine>().GetScreenWidth() / 2 + spacer ||
-                    this.transform.position.x < leftDistance) {
+                if (enemy.transform.position.x < -screenX / 2 + spacer ||
+                    enemy.transform.position.x < leftDistance) {
                     angleRight = true;
                 }
             }
         } else {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y - 1), speed * Time.deltaTime);
+            enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, new Vector3(enemy.transform.position.x, enemy.transform.position.y - 1), speed * Time.deltaTime);
         }
+    }
+
+    public void SetScreenDimensions(float x, float y) {
+        screenX = x;
+        screenY = y;
+        rightDistance = enemy.transform.position.x + rightDistance;
+        leftDistance = enemy.transform.position.x - leftDistance;
     }
 }

@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.2.3f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -93,6 +95,7 @@
     <Compile Include="Assets\Scripts\KeyBoard.cs" />
     <Compile Include="Assets\Scripts\MouseControl.cs" />
     <Compile Include="Assets\Scripts\MovementScripts\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\MovementScripts\MoveAroundSphere.cs" />
     <Compile Include="Assets\Scripts\MovementScripts\MoveDown.cs" />
     <Compile Include="Assets\Scripts\MovementScripts\MoveLeftAngle.cs" />
     <Compile Include="Assets\Scripts\MovementScripts\MoveRightAngle.cs" />
@@ -101,6 +104,7 @@
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Players\Impl\DefaultPlayer.cs" />
     <Compile Include="Assets\Scripts\Players\PlayerBehaviour.cs" />
+    <Compile Include="Assets\Scripts\ScreenAware.cs" />
     <Compile Include="Assets\Scripts\ScreenSize.cs" />
     <Compile Include="Assets\Scripts\ScrollSpeed.cs" />
     <Compile Include="Assets\Scripts\SlotScript.cs" />

@@ -8,7 +8,7 @@ public interface EnemyBehaviour {
     void GiveDamage(int damageValue);
     void Move(float speed);
     void Attack();
-    //void SetMovement(EnemyMovement movement);
+    void SetMovement(EnemyMovement movement);
     EnemyMovement GetMovement();
     void SetModel(GameObject model);
     GameObject GetModel();

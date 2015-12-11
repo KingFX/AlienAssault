@@ -28,8 +28,8 @@ public abstract class DefaultEnemyBehaviour :  EnemyBehaviour {
     public void Move(float speed) {
         //movement.Move(speed);
         //Move(speed);
-        //GetComponent<EnemyMovement>().Move(speed);
-        model.transform.position = Vector3.MoveTowards(model.transform.position, new Vector3(model.transform.position.x, model.transform.position.y - 5f), speed * Time.deltaTime);
+        movement.Move(speed);
+        //model.transform.position = Vector3.MoveTowards(model.transform.position, new Vector3(model.transform.position.x, model.transform.position.y - 5f), speed * Time.deltaTime);
     }
 
     public abstract void Attack();
@@ -65,5 +65,9 @@ public abstract class DefaultEnemyBehaviour :  EnemyBehaviour {
 
     public GameObject GetModel() {
         return model;
+    }
+
+    public void SetMovement(EnemyMovement movement) {
+        this.movement = movement;
     }
 }

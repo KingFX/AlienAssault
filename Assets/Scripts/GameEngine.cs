@@ -37,7 +37,7 @@ public class GameEngine : MonoBehaviour {
         player.AddWeapon(weaponDefault);
         playerController.AddPlayer(player, false);
 
-        //UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.visible = false;
         //SpawnPlayer
         //playerSpawn = new Vector3(0, -3, 0);
         //GameObject player = (GameObject)Instantiate(ItemDatabase.GetItemByName("Aero").gameModel, playerSpawn, ItemDatabase.GetItemByName("Aero").gameModel.transform.rotation)
@@ -133,22 +133,41 @@ public class GameEngine : MonoBehaviour {
                             break;
                     }
                     if (movementId != null) {
-                        //switch (movementId) {
-                        //    case "0":
-                        //        break;
-                        //    case "1":
-                        //        enemyObject.AddComponent<MoveDown>();
-                        //        break;
-                        //    case "2":
-                        //        enemyObject.AddComponent<MoveRightAngle>();
-                        //        break;
-                        //    case "3":
-                        //        enemyObject.AddComponent<MoveLeftAngle>();
-                        //        break;
-                        //    default:
-                        //        Debug.Log("Unkown Movement ID: " + movementId);
-                        //        break;
-                        //}
+                        print("MoveId: " + movementId);
+                        switch (movementId) {
+                            case "0":
+                                break;
+                            case "1": {
+                                    EnemyMovement movement = new MoveDown();
+                                    movement.SetEnemy(enemyObject.GetModel());
+                                    enemyObject.SetMovement(movement);
+                                    //enemyObject.AddComponent<MoveDown>();
+                                    break;
+                                }
+                            case "2": {
+                                    MoveRightAngle moveRightAngle = new MoveRightAngle();
+                                    EnemyMovement movement = moveRightAngle;
+                                    movement.SetEnemy(enemyObject.GetModel());
+                                    moveRightAngle.SetScreenDimensions(GetScreenWidth(), GetScreenHeight());
+                                    movement = moveRightAngle;
+                                    enemyObject.SetMovement(movement);
+                                    //enemyObject.AddComponent<MoveRightAngle>();
+                                    break;
+                                }
+                            case "3": {
+                                    MoveLeftAngle moveLeftAngle = new MoveLeftAngle();
+                                    EnemyMovement movement = moveLeftAngle;
+                                    movement.SetEnemy(enemyObject.GetModel());
+                                    moveLeftAngle.SetScreenDimensions(GetScreenWidth(), GetScreenHeight());
+                                    movement = moveLeftAngle;
+                                    enemyObject.SetMovement(movement);
+                                    //enemyObject.AddComponent<MoveLeftAngle>();
+                                    break;
+                                }
+                            default:
+                                Debug.Log("Unkown Movement ID: " + movementId);
+                                break;
+                        }
                     }
                     if (enemyObject != null) {
                         //GameObject enemyModel = enemyItem.gameModel;
@@ -171,15 +190,16 @@ public class GameEngine : MonoBehaviour {
         List<GameObject> markedObjects = new List<GameObject>();
 
         for (int i = 0; i < spawnedObjects.Count; i++) {
-            //if (spawnedObjects[i].transform.position.y <  -screenHeight / 2 - padding) {
-            //    markedObjects.Add(spawnedObjects[i]);
-            //} else if (spawnedObjects[i].GetComponent<EnemyBehaviour>().GetHealth() <= 0) {
-            //    markedObjects.Add(spawnedObjects[i]);
-            //}
-            //spawnedObjects[i].GetComponent<EnemyBehaviour>().Move(2.5f);
-            //if (spawnedObjects[i].transform.position.y < screenHeight / 2) {
-            //    spawnedObjects[i].GetComponent<EnemyBehaviour>().Attack();
-            //}
+            if (spawnedObjects[i].GetModel().transform.position.y < -screenHeight / 2 - padding) {
+                markedObjects.Add(spawnedObjects[i].GetModel());
+            } else if (spawnedObjects[i].GetHealth() <= 0) {
+                markedObjects.Add(spawnedObjects[i].GetModel());
+            } else {
+                spawnedObjects[i].Move(2.5f);
+                //if (spawnedObjects[i].transform.position.y < screenHeight / 2) {
+                //    spawnedObjects[i].GetComponent<EnemyBehaviour>().Attack();
+                //}
+            }
         }
         //foreach (GameObject g in markedObjects) {
         //    spawnedObjects.Remove(g);
