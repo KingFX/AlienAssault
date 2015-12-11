@@ -24,7 +24,7 @@ public class DefaultBlasterScript : MonoBehaviour {
     }
 
     private void DestroyThis() {
-        FindObjectOfType<PlayerControl>().SetAttack(true);
+        //FindObjectOfType<PlayerController>().SetAttack(true);
         Destroy(gameObject);
     }
 }

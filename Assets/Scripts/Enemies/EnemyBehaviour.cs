@@ -10,4 +10,6 @@ public interface EnemyBehaviour {
     void Attack();
     //void SetMovement(EnemyMovement movement);
     EnemyMovement GetMovement();
+    void SetModel(GameObject model);
+    GameObject GetModel();
 }

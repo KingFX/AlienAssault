@@ -35,21 +35,29 @@ public static class ItemDatabase {
         redReaper.icon = (GameObject)Resources.Load("ImportAssets/Enemies/RedReaper/GameObject/RedReaper");
         items.Add(redReaper);
 
-        DbItem skrullWeapon = new DbItem();
-        skrullWeapon.id = 4;
-        skrullWeapon.name = "SkrullWeapon";
-        skrullWeapon.type = "weapon";
-        skrullWeapon.gameModel = (GameObject)Resources.Load("ImportAssets/Enemies/Skrull/Weapon/Blaster/Prefab/SkrullWeapon");
-        skrullWeapon.icon = (GameObject)Resources.Load("ImportAssets/Enemies/Skrull/Weapon/Blaster/Prefab/SkrullWeapon");
-        items.Add(skrullWeapon);
+        DbItem fireBall = new DbItem();
+        fireBall.id = 4;
+        fireBall.name = "FireBall";
+        fireBall.type = "bullet";
+        fireBall.gameModel = (GameObject)Resources.Load("ImportAssets/Enemies/Skrull/Weapon/Blaster/Prefab/FireBall");
+        fireBall.icon = (GameObject)Resources.Load("ImportAssets/Enemies/Skrull/Weapon/Blaster/Prefab/FireBall");
+        items.Add(fireBall);
 
         DbItem plazmaBullet = new DbItem();
         plazmaBullet.id = 5;
         plazmaBullet.name = "PlazmaBullet";
-        plazmaBullet.type = "weapon";
+        plazmaBullet.type = "bullet";
         plazmaBullet.gameModel = (GameObject)Resources.Load("ImportAssets/Weapons/PlazmaBullet/Prefab/PlazmaBullet");
         plazmaBullet.icon = (GameObject)Resources.Load("ImportAssets/Weapons/PlazmaBullet/Prefab/PlazmaBullet");
         items.Add(plazmaBullet);
+
+        DbItem aero = new DbItem();
+        aero.id = 6;
+        aero.name = "Aero";
+        aero.type = "playerShip";
+        aero.gameModel = (GameObject)Resources.Load("ImportAssets/PlayerShips/Aero/Prefab/Aero");
+        aero.icon = (GameObject)Resources.Load("ImportAssets/PlayerShips/Aero/Prefab/Aero");
+        items.Add(aero);
     }
 
     public static List<DbItem> GetItems() {
@@ -65,7 +73,7 @@ public static class ItemDatabase {
     public static DbItem GetItemByName(string name) {
         DbItem item = null;
         for (int i = 0; i < items.Count; i++) {
-            if (items[i].name.Equals(name)) {
+            if (items[i].name.ToLower().Equals(name.ToLower())) {
                 item = items[i];
             }
         }
