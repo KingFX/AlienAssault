@@ -96,7 +96,7 @@ public class GameEngine : MonoBehaviour {
                             }
                         case "3": {
                                 enemyItem = ItemDatabase.GetItemByFileId("2");
-                                enemy = new Skrull();
+                                enemy = new RedReaper();
                                 enemy.SetHealth(5);
                                 break;
                             }
