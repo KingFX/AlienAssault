@@ -2,14 +2,14 @@
 using System.Collections;
 using System;
 
-public class PlazmaBullet : Bullet {
+public class PlazmaBullet : Bullet, ObjectModel {
 
     private int damage = 1;
     private BulletType type;
     private GameObject model;
 
     void OnBecameInvisible() {
-        //GameObject.Destroy(this.gameObject);
+        //GameObject.Destroy(model);
     }
 
     public void SetDamage(int damage) {

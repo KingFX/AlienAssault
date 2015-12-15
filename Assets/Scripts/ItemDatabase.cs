@@ -58,6 +58,22 @@ public static class ItemDatabase {
         aero.gameModel = (GameObject)Resources.Load("ImportAssets/PlayerShips/Aero/Prefab/Aero");
         aero.icon = (GameObject)Resources.Load("ImportAssets/PlayerShips/Aero/Prefab/Aero");
         items.Add(aero);
+
+        DbItem striker = new DbItem();
+        striker.id = 7;
+        striker.name = "Striker";
+        striker.type = "enemy";
+        striker.gameModel = (GameObject)Resources.Load("ImportAssets/Enemies/Striker/GameObject/Striker");
+        striker.icon = (GameObject)Resources.Load("ImportAssets/Enemies/Striker/GameObject/Striker");
+        items.Add(striker);
+
+        DbItem explosionOrange = new DbItem();
+        explosionOrange.id = 8;
+        explosionOrange.name = "explosionOrange";
+        explosionOrange.type = "explosion";
+        explosionOrange.gameModel = (GameObject)Resources.Load("ImportAssets/ExplosionFX/ExplosionOrange");
+        explosionOrange.icon = (GameObject)Resources.Load("ImportAssets/ExplosionFX/ExplosionOrange");
+        items.Add(explosionOrange);
     }
 
     public static List<DbItem> GetItems() {

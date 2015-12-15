@@ -2,12 +2,10 @@
 using System.Collections;
 
 
-public interface Bullet {
+public interface Bullet : ObjectModel {
 
     void SetDamage(int damage);
     int GetDamage();
     void SetType(BulletType type);
     BulletType GetType();
-    void SetModel(GameObject model);
-    GameObject GetModel();
 }

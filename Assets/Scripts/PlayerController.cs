@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
     private const int barrelRotationSpeed = 1000;
 
     //private List<PlayerBehaviour> players = new List<PlayerBehaviour>();
-    private Dictionary<PlayerBehaviour, bool> players = new Dictionary<PlayerBehaviour, bool>();
+    private static Dictionary<PlayerBehaviour, bool> players = new Dictionary<PlayerBehaviour, bool>();
     private Vector3 playerSpawn = new Vector3(0, -3, 0);
 
     // Use this for initialization
@@ -162,8 +162,8 @@ public class PlayerController : MonoBehaviour {
                 if (Vector3.Distance(new Vector3(0, ship.transform.position.x, 0), new Vector3(0, shipPos.x, 0)) > 0.75f) {
                     rightBarrel = true;
                 } else {
-                    print("Ship y: " + ship.transform.localEulerAngles.y);
-                    print("Rotate Max: " + rotate);
+                    //print("Ship y: " + ship.transform.localEulerAngles.y);
+                    //print("Rotate Max: " + rotate);
                     if (ship.transform.localEulerAngles.y > rotate) {
                         ship.transform.localEulerAngles = new Vector3(ship.transform.localEulerAngles.x, ship.transform.eulerAngles.y - rotationSpeed, ship.transform.eulerAngles.z);
                     }
@@ -203,7 +203,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Attack(PlayerBehaviour player) {
-        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && attackEnabled && delay <= 0) {
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))) {
             player.Attack();
             //Vector3 weaponSpawn = ship.transform.Find("WeaponSpawn").transform.position;
 
@@ -212,10 +212,8 @@ public class PlayerController : MonoBehaviour {
             //}
             //GameObject bullet = Instantiate(weapon, weaponSpawn, transform.rotation) as GameObject;
             //bullet.GetComponent<Rigidbody>().AddForce(Vector3.up * bulletSpeed * Time.deltaTime);
-            attackEnabled = false;
-            delay = fireRateDelay;
-        } else if(delay > 0){
-            delay--;
+            //attackEnabled = false;
+            //delay = fireRateDelay;
         }
     }
 
@@ -241,5 +239,10 @@ public class PlayerController : MonoBehaviour {
 
         minRotation = 90 - tiltAngle;
         maxRotation = 90 + tiltAngle;
+    }
+
+    public static PlayerBehaviour GetPlayers() {
+        List<PlayerBehaviour> playerList = new List<PlayerBehaviour>(players.Keys);
+        return playerList[0];
     }
 }

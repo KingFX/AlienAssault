@@ -18,6 +18,7 @@ public class MoveLeftAngle : EnemyMovement, ScreenAware {
 
     public void Move(float speed) {
         speed = speed * 1.5f;
+        //Debug.Log("Enemy: " + enemy);
         if (enemy.transform.position.y < screenY / 2) {
             if (angleRight) {
                 enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, new Vector3(enemy.transform.position.x + 1, enemy.transform.position.y - 1), speed * Time.deltaTime);

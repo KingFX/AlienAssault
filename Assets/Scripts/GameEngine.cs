@@ -10,7 +10,7 @@ public class GameEngine : MonoBehaviour {
     private List<DbItem> dbItems;
     private const int spawnDelay = 125;
     private float delay;
-    private List<EnemyBehaviour> spawnedObjects = new List<EnemyBehaviour>();
+    //private List<EnemyBehaviour> spawnedObjects = new List<EnemyBehaviour>();
     private List<int> enemies = new List<int>();
     private string[] levelRows;
     private Vector3 playerSpawn;
@@ -23,7 +23,9 @@ public class GameEngine : MonoBehaviour {
     private PlayerController playerController;
     private PlayerBehaviour playerBehaviour;
 
-    void Start() {
+    //private List<ObjectModel> players = new List<ObjectModel>();
+
+    void Awake() {
         this.gameObject.AddComponent<PlayerController>();
         playerController = GetComponent<PlayerController>();
         PlayerBehaviour player = new DefaultPlayer();
@@ -67,7 +69,8 @@ public class GameEngine : MonoBehaviour {
                 rowNum++;
                 string[] enemyIds = levelRow.Split(',');
                 for (int i = 0; i < enemyIds.Length; i++) {
-                    EnemyBehaviour enemyObject = null;
+                    DbItem enemyItem = null;
+                    EnemyBehaviour enemy = null;
                     string enemyId = enemyIds[i];
                     string movementId = null;
                     if (enemyIds[i].Contains(":")) {
@@ -80,96 +83,89 @@ public class GameEngine : MonoBehaviour {
                         case "0":
                             break;
                         case "1": {
-                                DbItem enemyItem = ItemDatabase.GetItemByFileId("0");
-                                //movement = new MoveDown();
-                                EnemyBehaviour enemy = new Blinky();
-                                enemy.SetModel(enemyItem.gameModel);
+                                enemyItem = ItemDatabase.GetItemByFileId("0");
+                                enemy = new Blinky();
                                 enemy.SetHealth(3);
-                                enemy.SetModel((GameObject)GameObject.Instantiate(enemy.GetModel(), new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemy.GetModel().transform.rotation));
-                                enemyObject = enemy;
-                                //enemyObject = (GameObject)GameObject.Instantiate(enemy.GetModel(), new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemy.GetModel().transform.rotation);
-                                //enemyObject.GetComponent<EnemyBehaviour>().SetHealth(enemyItem.health);
-
-                                //Weapon weapon = new SkrullWeapon();
-                                //Bullet bullet = new PlazmaBullet();
-                                //bullet.SetModel(ItemDatabase.GetItemByName("FireBall").gameModel);
-                                //bullet.SetType(BulletType.ENEMY);
-                                //weapon.SetWeaponBullet(bullet);
-                                
-                                //enemyObject.AddComponent<SkrullWeapon>();
-                                //enemyObject.GetComponent<SkrullWeapon>().SetWeaponBullet(ItemDatabase.GetItemByName("FireBall").gameModel);
-                                //enemyObject.GetComponent<EnemyBehaviour>().SetMovement(movement);
                                 break;
                             }
                         case "2": {
-                                DbItem enemyItem = ItemDatabase.GetItemByFileId("1");
-                                //movement = new MoveDown();
-                                EnemyBehaviour enemy = new Skrull();
-                                enemy.SetModel(enemyItem.gameModel);
+                                enemyItem = ItemDatabase.GetItemByFileId("1");
+                                enemy = new Skrull();
                                 enemy.SetHealth(5);
-                                enemy.SetModel((GameObject)GameObject.Instantiate(enemy.GetModel(), new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemy.GetModel().transform.rotation));
-                                enemyObject = enemy;
-                                //enemyObject = Instantiate(enemy.GetModel(), new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemy.GetModel().transform.rotation) as GameObject;
-                                //enemyObject.GetComponent<EnemyBehaviour>().SetHealth(enemyItem.health);
-                                //enemyObject.AddComponent<SkrullWeapon>();
-                                //enemyObject.GetComponent<EnemyBehaviour>().SetMovement();
                                 break;
                             }
                         case "3": {
-                                DbItem enemyItem = ItemDatabase.GetItemByFileId("2");
-                                //movement = new MoveDown();
-                                EnemyBehaviour enemy = new Skrull();
-                                enemy.SetModel(enemyItem.gameModel);
+                                enemyItem = ItemDatabase.GetItemByFileId("2");
+                                enemy = new Skrull();
                                 enemy.SetHealth(5);
-                                enemy.SetModel((GameObject)GameObject.Instantiate(enemy.GetModel(), new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemy.GetModel().transform.rotation));
-                                enemyObject = enemy;
-                                //enemyObject = Instantiate(enemy.GetModel(), new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemy.GetModel().transform.rotation) as GameObject;
-                                //enemyObject.GetComponent<EnemyBehaviour>().SetHealth(enemyItem.health);
-                                //enemyObject.GetComponent<EnemyBehaviour>().SetMovement(movement);
+                                break;
+                            }
+                        case "4": {
+                                enemyItem = ItemDatabase.GetItemByFileId("6");
+                                enemy = new Striker();
+                                enemy.SetHealth(8);
+                                enemy.SetExplosionFX(ItemDatabase.GetItemByName("ExplosionOrange").gameModel);
                                 break;
                             }
                         default:
                             Debug.Log("Unknown Item ID: " + enemyIds[i]);
                             break;
                     }
-                    if (movementId != null) {
-                        print("MoveId: " + movementId);
-                        switch (movementId) {
-                            case "0":
-                                break;
-                            case "1": {
-                                    EnemyMovement movement = new MoveDown();
-                                    movement.SetEnemy(enemyObject.GetModel());
-                                    enemyObject.SetMovement(movement);
-                                    //enemyObject.AddComponent<MoveDown>();
+                    if (enemy != null && enemyItem != null) {   
+                        enemy.SetModel((GameObject)GameObject.Instantiate(enemyItem.gameModel, new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemyItem.gameModel.transform.rotation));
+                        enemy.GetModel().GetComponent<CollisionController>().SetObject(enemy);
+                        //print("EnemyObject: " + enemy);
+                        if (movementId != null) {
+                            //print("MoveId: " + movementId);
+                            EnemyMovement movement = null;
+                            switch (movementId) {
+                                case "0":
                                     break;
-                                }
-                            case "2": {
-                                    MoveRightAngle moveRightAngle = new MoveRightAngle();
-                                    EnemyMovement movement = moveRightAngle;
-                                    movement.SetEnemy(enemyObject.GetModel());
-                                    moveRightAngle.SetScreenDimensions(GetScreenWidth(), GetScreenHeight());
-                                    movement = moveRightAngle;
-                                    enemyObject.SetMovement(movement);
-                                    //enemyObject.AddComponent<MoveRightAngle>();
+                                case "1":
+                                    {
+                                        movement = new MoveDown();
+                                        movement.SetEnemy(enemy.GetModel());
+                                        //enemy.SetMovement(movement);
+                                        //enemyObject.AddComponent<MoveDown>();
+                                        break;
+                                    }
+                                case "2":
+                                    {
+                                        //MoveRightAngle moveRightAngle = new MoveRightAngle();
+                                        movement = new MoveRightAngle();
+                                        movement.SetEnemy(enemy.GetModel());
+                                        //moveRightAngle.SetScreenDimensions(GetScreenWidth(), GetScreenHeight());
+                                        //movement = moveRightAngle;
+                                        //enemy.SetMovement(movement);
+                                        //enemyObject.AddComponent<MoveRightAngle>();
+                                        break;
+                                    }
+                                case "3":
+                                    {
+                                        movement = new MoveLeftAngle();
+                                        movement.SetEnemy(enemy.GetModel());
+                                        
+                                        //MoveLeftAngle moveLeftAngle = new MoveLeftAngle();
+                                        //EnemyMovement movement = moveLeftAngle;
+                                        //movement.SetEnemy(enemy.GetModel());
+                                        //moveLeftAngle.SetScreenDimensions(GetScreenWidth(), GetScreenHeight());
+                                        //movement = moveLeftAngle;
+                                        //enemy.SetMovement(movement);
+
+                                        //enemyObject.AddComponent<MoveLeftAngle>();
+                                        break;
+                                    }
+                                default:
+                                    Debug.Log("Unkown Movement ID: " + movementId);
                                     break;
-                                }
-                            case "3": {
-                                    MoveLeftAngle moveLeftAngle = new MoveLeftAngle();
-                                    EnemyMovement movement = moveLeftAngle;
-                                    movement.SetEnemy(enemyObject.GetModel());
-                                    moveLeftAngle.SetScreenDimensions(GetScreenWidth(), GetScreenHeight());
-                                    movement = moveLeftAngle;
-                                    enemyObject.SetMovement(movement);
-                                    //enemyObject.AddComponent<MoveLeftAngle>();
-                                    break;
-                                }
-                            default:
-                                Debug.Log("Unkown Movement ID: " + movementId);
-                                break;
+                            }
+                            if (movement is ScreenAware) {
+                                ((ScreenAware)movement).SetScreenDimensions(GetScreenWidth(), GetScreenHeight());
+                            }
+                            enemy.SetMovement(movement);
                         }
                     }
-                    if (enemyObject != null) {
+                    if (enemy != null) {
                         //GameObject enemyModel = enemyItem.gameModel;
                         //GameObject enemyObject = Instantiate(enemyModel, new Vector3((screenWidth * (float)i) / 8f - screenWidth / 2f + screenWidth / 16f, screenHeight + 2f), enemyModel.transform.rotation) as GameObject;
 
@@ -178,7 +174,9 @@ public class GameEngine : MonoBehaviour {
                         //enemyObject.GetComponent<EnemyBehaviour>().SetMovement(movement);
                         
                         //enemyObject.AddComponent<MoveDown>();
-                        spawnedObjects.Add(enemyObject);
+                        
+                        //spawnedObjects.Add(enemy);
+                        GarbageCollector.AddGameObject(enemy);
                     }
                 }
             }
@@ -187,24 +185,23 @@ public class GameEngine : MonoBehaviour {
             delay -= Time.deltaTime;
         }
 
-        List<GameObject> markedObjects = new List<GameObject>();
-
-        for (int i = 0; i < spawnedObjects.Count; i++) {
-            if (spawnedObjects[i].GetModel().transform.position.y < -screenHeight / 2 - padding) {
-                markedObjects.Add(spawnedObjects[i].GetModel());
-            } else if (spawnedObjects[i].GetHealth() <= 0) {
-                markedObjects.Add(spawnedObjects[i].GetModel());
-            } else {
-                spawnedObjects[i].Move(2.5f);
-                //if (spawnedObjects[i].transform.position.y < screenHeight / 2) {
-                //    spawnedObjects[i].GetComponent<EnemyBehaviour>().Attack();
-                //}
+        //List<EnemyBehaviour> markedObjects = new List<EnemyBehaviour>();
+        List<ObjectModel> om = GarbageCollector.GetObjects();
+        foreach (ObjectModel o in om) {
+            if (o is EnemyBehaviour) {
+                ((EnemyBehaviour)o).Move(2.5f);
             }
         }
-        //foreach (GameObject g in markedObjects) {
-        //    spawnedObjects.Remove(g);
-        //    Destroy(g);
-        //}
+        List<GameObject> markedItems = new List<GameObject>();
+        foreach (KeyValuePair<GameObject, Vector3> item in SpawnItem.GetItems()) {
+            GameObject spawnedItem = (GameObject)Instantiate(item.Key, item.Value, Quaternion.identity);
+            markedItems.Add(item.Key);
+        }
+        foreach (GameObject g in markedItems) {
+            SpawnItem.RemoveItem(g);
+        }
+
+        GarbageCollector.Clean();
     }
 
     public float GetScreenWidth() {

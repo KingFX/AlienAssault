@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class DefaultPlayer : PlayerBehaviour {
+public class DefaultPlayer : PlayerBehaviour, ObjectModel {
 
     private List<Weapon> weapons = new List<Weapon>();
     private GameObject shipModel;

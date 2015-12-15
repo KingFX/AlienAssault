@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface EnemyBehaviour {
+public interface EnemyBehaviour : ObjectModel {
 
     int GetHealth();
     void SetHealth(int health);
@@ -10,6 +10,6 @@ public interface EnemyBehaviour {
     void Attack();
     void SetMovement(EnemyMovement movement);
     EnemyMovement GetMovement();
-    void SetModel(GameObject model);
-    GameObject GetModel();
+    void SetExplosionFX(GameObject explosion);
+    GameObject GetExplosionFX();
 }

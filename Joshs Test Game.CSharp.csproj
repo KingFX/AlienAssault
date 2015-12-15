@@ -74,6 +74,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CameraControl.cs" />
     <Compile Include="Assets\PlanetScript.cs" />
     <Compile Include="Assets\PlazmaDuelWeapon.cs" />
     <Compile Include="Assets\Scripts\AeroWeapon.cs" />
@@ -83,20 +84,24 @@
     <Compile Include="Assets\Scripts\Bullets\BulletType.cs" />
     <Compile Include="Assets\Scripts\Bullets\FireBall.cs" />
     <Compile Include="Assets\Scripts\Bullets\PlazmaBullet.cs" />
-    <Compile Include="Assets\Scripts\CameraControl.cs" />
     <Compile Include="Assets\Scripts\CanvasIcon.cs" />
+    <Compile Include="Assets\Scripts\CollisionController.cs" />
     <Compile Include="Assets\Scripts\DbItem.cs" />
     <Compile Include="Assets\Scripts\DefaultBlasterScript.cs" />
+    <Compile Include="Assets\Scripts\Effects\Explosions\Effect.cs" />
     <Compile Include="Assets\Scripts\Enemies\Blinky.cs" />
     <Compile Include="Assets\Scripts\Enemies\DefaultEnemyBehaviour.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyBehaviour.cs" />
     <Compile Include="Assets\Scripts\Enemies\RedReaper.cs" />
     <Compile Include="Assets\Scripts\Enemies\Skrull.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Striker.cs" />
     <Compile Include="Assets\Scripts\GameEngine.cs" />
+    <Compile Include="Assets\Scripts\GarbageCollector.cs" />
     <Compile Include="Assets\Scripts\GridGenerator.cs" />
     <Compile Include="Assets\Scripts\ItemDatabase.cs" />
     <Compile Include="Assets\Scripts\ItemSelector.cs" />
     <Compile Include="Assets\Scripts\KeyBoard.cs" />
+    <Compile Include="Assets\Scripts\LECameraControl.cs" />
     <Compile Include="Assets\Scripts\MouseControl.cs" />
     <Compile Include="Assets\Scripts\MovementScripts\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\MovementScripts\MoveAroundSphere.cs" />
@@ -105,6 +110,7 @@
     <Compile Include="Assets\Scripts\MovementScripts\MoveRightAngle.cs" />
     <Compile Include="Assets\Scripts\NotUsing\EnemyGeneratorScript.cs" />
     <Compile Include="Assets\Scripts\NotUsing\EnemyScript.cs" />
+    <Compile Include="Assets\Scripts\ObjectModel.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Players\Impl\DefaultPlayer.cs" />
     <Compile Include="Assets\Scripts\Players\PlayerBehaviour.cs" />
@@ -112,6 +118,7 @@
     <Compile Include="Assets\Scripts\ScreenSize.cs" />
     <Compile Include="Assets\Scripts\ScrollSpeed.cs" />
     <Compile Include="Assets\Scripts\SlotScript.cs" />
+    <Compile Include="Assets\Scripts\SpawnItem.cs" />
     <Compile Include="Assets\Scripts\Weapons\SkrullWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
   </ItemGroup>

@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class FireBall : Bullet {
+public class FireBall : Bullet, ObjectModel {
 
     private GameObject model;
     private int damage = 1;

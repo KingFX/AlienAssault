@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraControl : MonoBehaviour {
+public class LECameraControl : MonoBehaviour {
 
     public Camera myCam;
 
